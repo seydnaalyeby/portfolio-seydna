@@ -1,7 +1,8 @@
 ﻿import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Project } from '../../types';
-import { ExternalLinkIcon, GithubIcon } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
 
 interface ProjectsSectionProps {
   projects: Project[];
@@ -90,7 +91,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, loading }) 
               className="text-text-secondary hover:text-primary transition-colors duration-200"
               onClick={(e) => e.stopPropagation()}
             >
-              <GithubIcon className="h-5 w-5" />
+              <FaGithub className="h-5 w-5" />
             </a>
           )}
           {project.live_url && (
@@ -101,7 +102,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, loading }) 
               className="text-text-secondary hover:text-primary transition-colors duration-200"
               onClick={(e) => e.stopPropagation()}
             >
-              <ExternalLinkIcon className="h-5 w-5" />
+              <ExternalLink className="h-5 w-5" />
             </a>
           )}
         </div>
@@ -215,7 +216,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, loading }) 
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors duration-200"
                     >
-                      <GithubIcon className="h-5 w-5" />
+                      <FaGithub className="h-5 w-5" />
                       Voir sur GitHub
                     </a>
                   )}
@@ -226,7 +227,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, loading }) 
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors duration-200"
                     >
-                      <ExternalLinkIcon className="h-5 w-5" />
+                      <ExternalLink className="h-5 w-5" />
                       Voir en ligne
                     </a>
                   )}
@@ -241,4 +242,6 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects, loading }) 
 };
 
 export default ProjectsSection;
+
+
 

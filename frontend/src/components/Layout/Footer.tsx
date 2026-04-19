@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GithubIcon, LinkedinIcon, MailIcon } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
 import { SOCIAL_LINKS } from '../../utils/constants';
 
 const Footer: React.FC = () => {
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <GithubIcon className="h-5 w-5" />
+              <FaGithub className="h-5 w-5" />
             </motion.a>
             <motion.a
               href={SOCIAL_LINKS.linkedin}
@@ -45,7 +46,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <LinkedinIcon className="h-5 w-5" />
+              <FaLinkedin className="h-5 w-5" />
             </motion.a>
             <motion.a
               href={SOCIAL_LINKS.email}
@@ -53,7 +54,7 @@ const Footer: React.FC = () => {
               whileHover={{ scale: 1.2, rotate: 5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <MailIcon className="h-5 w-5" />
+              <Mail className="h-5 w-5" />
             </motion.a>
           </motion.div>
         </div>

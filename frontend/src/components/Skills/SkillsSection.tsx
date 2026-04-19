@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Skill, SkillsByCategory } from '../../types';
+import { SkillsByCategory } from '../../types';
 import { SKILL_CATEGORY_LABELS } from '../../utils/constants';
 import { getSkillColor } from '../../utils/helpers';
 
