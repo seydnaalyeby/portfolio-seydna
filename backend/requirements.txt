@@ -7,3 +7,5 @@ celery==5.3.4
 redis==5.0.7
 gunicorn==21.2.0
 whitenoise==6.7.0
+cloudinary==1.40.0
+django-cloudinary-storage==0.3.0

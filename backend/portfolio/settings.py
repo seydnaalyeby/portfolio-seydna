@@ -27,6 +27,8 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 LOCAL_APPS = [
@@ -105,6 +107,20 @@ if _static_dir.exists():
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'portfolio' / 'media'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+}
+
+_cloudinary_configured = all([
+    config('CLOUDINARY_CLOUD_NAME', default=''),
+    config('CLOUDINARY_API_KEY', default=''),
+    config('CLOUDINARY_API_SECRET', default=''),
+])
+if _cloudinary_configured:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

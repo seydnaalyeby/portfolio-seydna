@@ -16,18 +16,20 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     def get_photo_url(self, obj):
         if obj.photo:
+            url = obj.photo.url
+            if url.startswith('http'):
+                return url
             request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.photo.url)
-            return obj.photo.url
+            return request.build_absolute_uri(url) if request else url
         return None
 
     def get_cv_url(self, obj):
         if obj.cv_file:
+            url = obj.cv_file.url
+            if url.startswith('http'):
+                return url
             request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.cv_file.url)
-            return obj.cv_file.url
+            return request.build_absolute_uri(url) if request else url
         return None
 
 
