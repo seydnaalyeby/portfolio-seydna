@@ -24,8 +24,8 @@ class Command(BaseCommand):
             email="seydnaalyeby@gmail.com",
             phone="+222 30 45 43 77",
             location="Nouakchott, Mauritanie",
-            github_url="https://github.com/seydna",
-            linkedin_url="https://linkedin.com/in/seydna"
+            github_url="https://github.com/seydnaalyeby/",
+            linkedin_url="https://www.linkedin.com/in/seydna-aly-7b80a73b5"
         )
 
         # Création des compétences
@@ -106,28 +106,28 @@ class Command(BaseCommand):
                 "degree": "Master 2 Informatique Appliquée à la Gestion",
                 "institution": "ISCAE",
                 "location": "Nouakchott",
-                "start_date": "2023-09-01",
-                "end_date": "2025-06-30",
-                "current": False,
+                "start_date": "2024-09-01",
+                "end_date": None,
+                "current": True,
                 "description": "Spécialisation en développement logiciel, bases de données et intelligence artificielle",
                 "order": 1
             },
             {
-                "degree": "Licence Informatique",
-                "institution": "Université de Nouakchott",
+                "degree": "Licence en Réseau Informatique et Télécommunication",
+                "institution": "ISCAE",
                 "location": "Nouakchott",
-                "start_date": "2020-09-01",
-                "end_date": "2023-06-30",
+                "start_date": "2021-09-01",
+                "end_date": "2024-06-30",
                 "current": False,
-                "description": "Formation fondamentale en informatique, algorithmique et programmation",
+                "description": "Formation fondamentale en réseaux, télécommunications et informatique",
                 "order": 2
             },
             {
                 "degree": "Baccalauréat Scientifique",
-                "institution": "Lycée de Nouakchott",
-                "location": "Nouakchott",
+                "institution": "Lycée d'Aioun",
+                "location": "Aioun",
                 "start_date": "2017-09-01",
-                "end_date": "2020-06-30",
+                "end_date": "2021-06-30",
                 "current": False,
                 "description": "Spécialité Mathématiques et Physique-Chimie",
                 "order": 3
