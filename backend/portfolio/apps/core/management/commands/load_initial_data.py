@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from django.core.files.uploadedfile import SimpleUploadedFile
+from django.contrib.auth import get_user_model
 from portfolio.apps.core.models import Profile, Skill, Project, Education, KeyStrength
 
 
@@ -9,24 +9,31 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write('Chargement des données initiales...')
 
-        # Suppression des données existantes
-        Profile.objects.all().delete()
+        # Create superuser if it doesn't exist
+        User = get_user_model()
+        if not User.objects.filter(username='admin').exists():
+            User.objects.create_superuser('admin', 'seydnaalyeby@gmail.com', 'admin1234')
+            self.stdout.write('Superuser créé: admin / admin1234')
+
+        # Update profile without touching the photo field (preserves Cloudinary upload)
+        profile, created = Profile.objects.update_or_create(
+            email="seydnaalyeby@gmail.com",
+            defaults={
+                "full_name": "SEYDNA ALY EBY",
+                "title": "Étudiant en Master 2",
+                "profile_text": "Étudiant en Master 2 Informatique Appliquée à la Gestion à l'ISCAE, je recherche un stage en développement logiciel, data ou IA. Spécialisé en backend Python/Django, développement mobile Flutter et bases de l'Intelligence Artificielle, je suis autonome, rigoureux et orienté résultats. Je souhaite contribuer à des projets concrets en appliquant les bonnes pratiques Agile et CI/CD.",
+                "phone": "+222 30 45 43 77",
+                "location": "Nouakchott, Mauritanie",
+                "github_url": "https://github.com/seydnaalyeby/",
+                "linkedin_url": "https://www.linkedin.com/in/seydna-aly-7b80a73b5",
+            }
+        )
+
+        # Reset other data (no file fields)
         Skill.objects.all().delete()
         Project.objects.all().delete()
         Education.objects.all().delete()
         KeyStrength.objects.all().delete()
-
-        # Création du profil
-        profile = Profile.objects.create(
-            full_name="SEYDNA ALY EBY",
-            title="Étudiant en Master 2",
-            profile_text="Étudiant en Master 2 Informatique Appliquée à la Gestion à l'ISCAE, je recherche un stage en développement logiciel, data ou IA. Spécialisé en backend Python/Django, développement mobile Flutter et bases de l'Intelligence Artificielle, je suis autonome, rigoureux et orienté résultats. Je souhaite contribuer à des projets concrets en appliquant les bonnes pratiques Agile et CI/CD.",
-            email="seydnaalyeby@gmail.com",
-            phone="+222 30 45 43 77",
-            location="Nouakchott, Mauritanie",
-            github_url="https://github.com/seydnaalyeby/",
-            linkedin_url="https://www.linkedin.com/in/seydna-aly-7b80a73b5"
-        )
 
         # Création des compétences
         skills_data = [
