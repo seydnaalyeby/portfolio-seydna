@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './index.css';
+// v2
 
 // ── Intersection observer hook ─────────────────────────────────────────────
 const useInView = (threshold = 0.15) => {
