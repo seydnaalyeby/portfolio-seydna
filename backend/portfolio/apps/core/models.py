@@ -5,6 +5,14 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 
+def _get_cv_storage():
+    try:
+        from cloudinary_storage.storage import RawMediaCloudinaryStorage
+        return RawMediaCloudinaryStorage()
+    except ImportError:
+        return None
+
+
 class Profile(models.Model):
     """Modèle pour les informations du profil"""
     full_name = models.CharField(max_length=100, verbose_name="Nom complet")
@@ -16,7 +24,8 @@ class Profile(models.Model):
     github_url = models.URLField(blank=True, verbose_name="GitHub")
     linkedin_url = models.URLField(blank=True, verbose_name="LinkedIn")
     photo = models.ImageField(upload_to='profile/', blank=True, verbose_name="Photo")
-    cv_file = models.FileField(upload_to='cv/', blank=True, verbose_name="Fichier CV")
+    cv_file = models.FileField(upload_to='cv/', blank=True, verbose_name="Fichier CV",
+                              storage=_get_cv_storage())
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
