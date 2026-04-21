@@ -162,7 +162,7 @@ const DynamicApp: React.FC = () => {
     <div className="min-h-screen bg-black text-white flex items-center justify-center">
       <div className="text-center">
         <div className="w-14 h-14 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4 animate-spin" />
-        <p className="text-gray-400 font-mono text-sm tracking-wide">Chargement du portfolio…</p>
+        <p className="text-gray-400 font-mono text-sm tracking-wide">Chargement du portfolio</p>
       </div>
     </div>
   );
@@ -591,4 +591,3 @@ const ContactForm: React.FC<{ profile: any }> = ({ profile }) => {
 };
 
 export default DynamicApp;
-// force rebuild Tue Apr 21 12:06:36 GST 2026
