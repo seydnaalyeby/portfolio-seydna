@@ -6,31 +6,32 @@ class ProfileSerializer(serializers.ModelSerializer):
     """Serializer pour le profil"""
     photo_url = serializers.SerializerMethodField()
     cv_url = serializers.SerializerMethodField()
+    photo = serializers.SerializerMethodField()
 
     class Meta:
         model = Profile
         fields = [
             'id', 'full_name', 'title', 'profile_text', 'email', 'phone',
-            'location', 'github_url', 'linkedin_url', 'photo_url', 'cv_url'
+            'location', 'github_url', 'linkedin_url', 'photo_url', 'cv_url', 'photo'
         ]
 
+    def _get_file_url(self, file_field):
+        if not file_field:
+            return None
+        url = file_field.url
+        if url.startswith('http'):
+            return url
+        request = self.context.get('request')
+        return request.build_absolute_uri(url) if request else url
+
     def get_photo_url(self, obj):
-        if obj.photo:
-            url = obj.photo.url
-            if url.startswith('http'):
-                return url
-            request = self.context.get('request')
-            return request.build_absolute_uri(url) if request else url
-        return None
+        return self._get_file_url(obj.photo)
+
+    def get_photo(self, obj):
+        return self._get_file_url(obj.photo)
 
     def get_cv_url(self, obj):
-        if obj.cv_file:
-            url = obj.cv_file.url
-            if url.startswith('http'):
-                return url
-            request = self.context.get('request')
-            return request.build_absolute_uri(url) if request else url
-        return None
+        return self._get_file_url(obj.cv_file)
 
 
 class SkillSerializer(serializers.ModelSerializer):
