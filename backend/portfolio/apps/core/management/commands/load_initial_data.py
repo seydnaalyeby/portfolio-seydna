@@ -29,9 +29,8 @@ class Command(BaseCommand):
             }
         )
 
-        # Reset other data (no file fields)
+        # Reset non-file data
         Skill.objects.all().delete()
-        Project.objects.all().delete()
         Education.objects.all().delete()
         KeyStrength.objects.all().delete()
 
@@ -105,7 +104,10 @@ class Command(BaseCommand):
         ]
 
         for project_data in projects_data:
-            Project.objects.create(**project_data)
+            Project.objects.update_or_create(
+                title=project_data['title'],
+                defaults={k: v for k, v in project_data.items() if k != 'title'}
+            )
 
         # Création de la formation
         education_data = [
