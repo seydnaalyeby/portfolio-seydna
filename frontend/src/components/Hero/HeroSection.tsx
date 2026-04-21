@@ -137,14 +137,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                     src={profile.photo_url}
                     alt={profile.full_name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.removeAttribute('style');
+                    }}
                   />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                    <span className="text-white text-4xl font-bold">
-                      {profile.full_name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                )}
+                ) : null}
+                <div
+                  className="w-full h-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center"
+                  style={profile.photo_url ? { display: 'none' } : undefined}
+                >
+                  <span className="text-white text-4xl font-bold">
+                    {profile.full_name.split(' ').map(n => n[0]).join('')}
+                  </span>
+                </div>
               </motion.div>
 
               {/* Animated ring */}
