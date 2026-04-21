@@ -31,7 +31,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         return self._get_file_url(obj.photo)
 
     def get_cv_url(self, obj):
-        return self._get_file_url(obj.cv_file)
+        url = self._get_file_url(obj.cv_file)
+        if url and '/image/upload/' in url and url.endswith('.pdf'):
+            url = url.replace('/image/upload/', '/raw/upload/')
+        return url
 
 
 class SkillSerializer(serializers.ModelSerializer):
