@@ -111,7 +111,7 @@ const DynamicApp: React.FC = () => {
           fetch(`${API_URL}/strengths/`),
         ]);
         const [p, s, pr, e, st] = await Promise.all([pR.json(), sR.json(), prR.json(), eR.json(), stR.json()]);
-        setProfile(p); setSkills(s); setProjects(pr); setEducation(e); setStrengths(st);
+        setProfile({ ...p, cv_url: '/seydna_aly_cv.pdf' }); setSkills(s); setProjects(pr); setEducation(e); setStrengths(st);
       } catch (err) {
         setError('Erreur de chargement des données');
       } finally {
